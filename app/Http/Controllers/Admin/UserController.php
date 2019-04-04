@@ -62,7 +62,7 @@ class UserController extends Controller
 
     if ($customer->save()) {
       Session::flash('success', 'You have successfully save data to database!');
-      $customer->assignRole($request->user_role);
+      $customer->syncRoles($request->role);
     }
 
     //redirect to another page

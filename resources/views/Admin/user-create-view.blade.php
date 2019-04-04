@@ -52,12 +52,18 @@
                               </div>
 
                               <div class="sub-title">Role</div>
-                              <div>
-                                <select name="user_role" class="selectbox select2-hidden-accessible">
-                                  @foreach($roles as $role)
-                                  <option value="{{$role['name']}}">{{$role['name']}}</option>
-                                  @endforeach
-                                </select>
+                              <div>   
+
+                                <?php foreach($roles as $role): ?>
+
+                                <div class="checkbox3 checkbox-success checkbox-inline checkbox-check checkbox-round  checkbox-light">
+                                  <input name="role[]" type="checkbox" id="" value="<?php echo $role['name']; ?>">
+                                  <label for="">
+                                    <?php echo $role['name']; ?>
+                                  </label>
+                                </div>
+
+                                <?php endforeach; ?>
                               </div>
 
 
