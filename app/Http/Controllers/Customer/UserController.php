@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Customer;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
@@ -32,8 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $permissions = Auth::guard('customer')->user()->getAllPermissions();
-        return view('customer.users.create')->withPermissions($permissions);
+        $roles = Auth::guard('customer')->user()->getRoleNames();
+        return view('customer.users.create')->withRoles($roles);
     }
 
     /**
@@ -60,7 +61,7 @@ class UserController extends Controller
 
     if ($customer->save()) {
       Session::flash('success', 'You have successfully save data to database!');
-      $customer->syncPermissions($request->permissionname);
+      $customer->syncRoles($request->role_name);
     }
 
     //redirect to another page

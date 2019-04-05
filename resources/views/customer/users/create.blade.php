@@ -29,16 +29,16 @@
 									<br>
 									<input name="user_email" type="email" class="form-control" placeholder="User Email">
 									<br>
-									<input name="user_password" type="password" class="form-control">
+									<input name="user_password" placeholder="password" type="password" class="form-control">
 
 									<br>
-                  <h3>Permissions</h3>
-                  @foreach($permissions as $permission)
+                  <h3>Roles</h3>
+                  @for($i = 0; $i < count($roles); $i++)
 									<label class="fancy-checkbox">
-										<input name="permissionname[]" type="checkbox" value="{{$permission->name}}">
-										<span>{{$permission->name}}</span>
+										<input name="role_name[]" type="checkbox" value="{{$roles[$i]}}">
+										<span>{{$roles[$i]}}</span>
 									</label>
-                  @endforeach
+                  @endfor
                   <br>
                   <button class="btn btn-primary" type="submit" name="save_post">Create User</button>
 								</form>
