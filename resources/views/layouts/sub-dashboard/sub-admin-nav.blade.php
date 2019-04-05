@@ -31,6 +31,21 @@
           </div>
         </li>
 
+
+        <li>
+          <a href="#subProducts" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Products</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+          <div id="subProducts" class="collapse ">
+            <ul class="nav">
+
+              <li><a href="{{route('customer.product.create')}}" class="">Add New Product</a></li>
+
+
+              <li><a href="{{route('customer.products')}}" class="">View Product</a></li>
+
+            </ul>
+          </div>
+        </li>
+
         <li><a href="{{ route('customer.logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();" class=""><i class="lnr lnr-cog"></i> <span>Logout</span>
                       <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">

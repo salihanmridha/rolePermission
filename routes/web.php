@@ -35,10 +35,14 @@ Route::group(['middleware' => ['permission:Delete Post']], function () {
   Route::delete('posts/{post}', 'Admin\PostController@destroy')->name('posts.destroy');
 });
 
-Route::group(['middleware' => ['permission:View Post|Add Post|Edit Post']], function () {
+//Route::group(['middleware' => ['permission:View Post|Add Post|Edit Post']], function () {
   Route::get('allpostlist', 'Admin\PostController@dashboardAllPost')->name('allposts');
-});
+//});
 
+//product management from admin routes
+Route::get('products', 'Admin\ProductController@index')->name('products');
+Route::get('create-product', 'Admin\ProductController@create')->name('product.create');
+Route::post('store-product', 'Admin\ProductController@store')->name('product.store');
 
 //user management from admin routes
 Route::get('createpermission', 'Admin\Roles_Permissions@create_permission')->name('createpermission');
@@ -50,6 +54,8 @@ Route::post('storerole', 'Admin\Roles_Permissions@store')->name('storerole');
 Route::get('createuser', 'Admin\UserController@create')->name('createuser');
 Route::post('storeuser', 'Admin\UserController@store')->name('storeuser');
 });
+
+
 
 
 //all route for customer
@@ -81,5 +87,16 @@ Route::group(['middleware' => ['customer']], function () {
   //managing routes for customer user
   Route::get('/customer/customer-create', 'Customer\UserController@create')->name('customer.user.create');
   Route::post('/customer/customer-store', 'Customer\UserController@store')->name('customer.user.store');
+
+  //managing routes for customer products
+
+  Route::group(['middleware' => ['auth:customer', 'permission:Add Product']], function () {
+    Route::get('/customer/product-create', 'Customer\ProductController@create')->name('customer.product.create');
+    Route::post('/customer/product-store', 'Customer\ProductController@store')->name('customer.product.store');
+  });
+
+  Route::group(['middleware' => ['auth:customer', 'permission:View Product']], function () {
+    Route::get('/customer/products', 'Customer\ProductController@index')->name('customer.products');
+  });
 
 });

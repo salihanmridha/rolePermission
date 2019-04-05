@@ -33,6 +33,22 @@
             </li>
 
             <li>
+                <a href="#"><i class="fa fa-dashboard"></i> Products <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+                    <li>
+                        <a href="{{route('product.create')}}">Add New Product</a>
+                    </li>
+
+
+                    <li>
+                        <a href="">View All Products</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
                 <a href="#"><i class="fa fa-dashboard"></i> Roles and Permission <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
